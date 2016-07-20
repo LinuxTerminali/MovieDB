@@ -29,7 +29,7 @@ public class BoxOfficeActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_box_office);
-        Toolbar myToolbar=(Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar=(Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         lvMovies=(ListView)findViewById(R.id.lvMovies);
         ArrayList<BoxOfficeMovie> aMovies = new ArrayList<BoxOfficeMovie>();
