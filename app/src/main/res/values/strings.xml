@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Movie DB</string>
+    <string name="box_office_title">Popular Movie</string>
 </resources>
