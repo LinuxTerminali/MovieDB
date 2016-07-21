@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -11,16 +12,19 @@ import java.util.ArrayList;
  * Created by TERMINALi on 7/19/2016.
  */
 
-public class BoxOfficeMovie {
+public class BoxOfficeMovie implements Serializable {
     private String title;
     private String language;
     private String releaseDate;
+    private String overview;
+
 
     private String posterPath;
 
     private double popularity;
     private int voteCount;
     private double voteAverage;
+
 
     public String getTitle(){
         return title;
@@ -52,6 +56,11 @@ public class BoxOfficeMovie {
         return posterPath;
     }
 
+
+    public String getOverview(){
+        return overview;
+    }
+
     public static BoxOfficeMovie fromJson(JSONObject jsonObject){
         BoxOfficeMovie b =new BoxOfficeMovie();
         try{
@@ -64,6 +73,7 @@ public class BoxOfficeMovie {
             b.popularity=jsonObject.getDouble("popularity");
             b.voteAverage=jsonObject.getDouble("vote_average");
             b.voteCount=jsonObject.getInt("vote_count");
+            b.overview=jsonObject.getString("overview");
         }catch(JSONException e){
             e.printStackTrace();
             return null;

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Movie DB</string>
-    <string name="box_office_title">Popular Movie</string>
+    <string name="app_name">Details</string>
+    <string name="box_office_title">Movie Database</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_grid_view_adapter">GridViewAdapterActivity</string>
 </resources>
