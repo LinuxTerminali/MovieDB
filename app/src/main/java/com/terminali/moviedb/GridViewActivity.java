@@ -2,6 +2,7 @@ package com.terminali.moviedb;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -33,6 +34,9 @@ public class GridViewActivity extends AppCompatActivity {
         GridView grid_view = (GridView) findViewById(R.id.grid_view);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        setupActionBar();
+        /*adapter*/
+
         ArrayList<BoxOfficeMovie> poster = new ArrayList<BoxOfficeMovie>();
         adapterPoster = new GridAdapter(this, poster);
         grid_view.setAdapter(adapterPoster);
@@ -45,6 +49,14 @@ public class GridViewActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void fetchBoxofficeMovies() {

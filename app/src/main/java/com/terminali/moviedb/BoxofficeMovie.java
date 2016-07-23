@@ -56,6 +56,12 @@ public class BoxOfficeMovie implements Serializable {
         return posterPath;
     }
 
+    public ArrayList<String> Setposter(){
+        ArrayList<String> poster = new ArrayList<String>();
+        poster.add(getPosterPath().toString()+"http://image.tmdb.org/t/p/w185/");
+        return poster;
+    }
+
 
     public String getOverview(){
         return overview;

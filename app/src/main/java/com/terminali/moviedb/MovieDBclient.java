@@ -18,6 +18,7 @@ public class MovieDBClient {
         this.client= new AsyncHttpClient();
     }
     private String getAPI_URL(String relativeUrl){
+
         return API_base_URL+relativeUrl;
     }
 

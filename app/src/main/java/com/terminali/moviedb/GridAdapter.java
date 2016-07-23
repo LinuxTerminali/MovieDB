@@ -31,8 +31,8 @@ public class GridAdapter extends ArrayAdapter<BoxOfficeMovie> {
         }
         ImageView poster_image=(ImageView) convertView.findViewById(R.id.poster_image);
         Picasso.with(getContext())
-                .load(posterUrl).
-                error(R.drawable.small_movie_poster)
+                .load(posterUrl)
+                .error(R.drawable.small_movie_poster)
                 .into(poster_image);
         return convertView;
     }

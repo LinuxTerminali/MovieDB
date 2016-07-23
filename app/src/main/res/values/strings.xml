@@ -3,4 +3,10 @@
     <string name="box_office_title">Movie Database</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_grid_view_adapter">GridViewAdapterActivity</string>
+    <string name="title_activity_slide_show_main">SlideShowMain</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
