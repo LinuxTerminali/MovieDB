@@ -1,4 +1,4 @@
-package com.terminali.moviedb;
+package com.terminali.moviedb.temp;
 
 import android.graphics.Movie;
 
@@ -12,14 +12,14 @@ import java.util.List;
  * Created by TERMINALi on 7/22/2016.
  */
 
-public class TempClass {
+public class SlideShowClient {
     private static final String API_base_URL="https://api.themoviedb.org/3/";
     private static final String API_key="ac86994ec3fa34236d4b5dee07f407f1";
     private static AsyncHttpClient client;
     List<Movie> movies;
 
 
-    public  TempClass(){
+    public SlideShowClient(){
         this.client=new AsyncHttpClient();
     }
 

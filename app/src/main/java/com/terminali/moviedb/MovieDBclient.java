@@ -22,13 +22,13 @@ public class MovieDBClient {
         return API_base_URL+relativeUrl;
     }
 
-    public void getBOXofficeMovies(int ram,JsonHttpResponseHandler handler){
-        String url =getAPI_URL("movie/now_playing");
+    public void getBOXofficeMovies(String url,int ram,JsonHttpResponseHandler handler){
+        //String url =getAPI_URL("movie/upcoming");
         RequestParams params = new RequestParams();
         //Set<Integer> list = new HashSet<Integer>();
         params.put("api_key",API_key);
         params.put("page",ram);
-        client.get(url,params,handler);
+        client.get(API_base_URL+url,params,handler);
 
     }
 

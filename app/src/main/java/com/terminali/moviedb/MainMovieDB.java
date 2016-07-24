@@ -3,6 +3,10 @@ package com.terminali.moviedb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -13,18 +17,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.daimajia.slider.library.SliderLayout;
-import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import java.util.ArrayList;
+import java.util.List;
 
-public class SlideShowMain extends AppCompatActivity
+
+public class MainMovieDB extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
-
-        private SlideShowAdapter mCustomPagerAdapter;
-        private ViewPager mViewPager;
     private final static String TAG = "TestActivity";
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,25 @@ public class SlideShowMain extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
         Log.d(TAG, "On create .....");
 
-        /*view pager adapter */
-        movieslider();
-        tvSlider();
+
     }
+        /*view pager adapter */
+
+        //movieslider();
+        //tvSlider();
+
+
 
 
 
@@ -107,42 +122,47 @@ public class SlideShowMain extends AppCompatActivity
         return true;
     }
 
-public void movieslider(){
-    anotherTemp temp = new anotherTemp();
-    temp.fetchMovie();
-        SliderLayout sliderShow = (SliderLayout) findViewById(R.id.movie_slider);
-        for (String name : temp.getMovieList().keySet()) {
-            TextSliderView textSliderView = new TextSliderView(this);
-            textSliderView
-                    .description(name)
-                    .image(temp.getMovieList().get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
 
-            sliderShow.addSlider(textSliderView);
-        }
-        sliderShow.setPresetTransformer(SliderLayout.Transformer.Foreground2Background);
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+       adapter.addFragment(new OneFragment(),"Latest Release");
+        adapter.addFragment(new ThreeFragment(),"Top Rated Movie");
+        viewPager.setAdapter(adapter);
     }
 
 
 
 
-    public void tvSlider(){
-        anotherTemp tvtemp = new anotherTemp();
-        tvtemp.fetchTv();
-        SliderLayout tslider = (SliderLayout) findViewById(R.id.tv_slider);
-        for (String name : tvtemp.getTvList().keySet()) {
-            TextSliderView tvSliderView = new TextSliderView(this);
-            tvSliderView
-                    .description(name)
-                    .image(tvtemp.getTvList().get(name))
-                    .setScaleType(BaseSliderView.ScaleType.Fit);
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-            tslider.addSlider(tvSliderView);
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
         }
-        tslider.setPresetTransformer(SliderLayout.Transformer.Foreground2Background);
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            mFragmentTitleList.add("Latest Release");
+            mFragmentTitleList.add("Top Rated");
+            return mFragmentTitleList.get(position);
+        }
     }
-
-
-
 
 }

@@ -1,4 +1,4 @@
-package com.terminali.moviedb;
+package com.terminali.moviedb.temp;
 
 import android.util.Log;
 
@@ -16,8 +16,8 @@ import cz.msebera.android.httpclient.Header;
  * Created by TERMINALi on 7/23/2016.
  */
 
-public class anotherTemp {
-    private static TempClass client;
+public class SlideShowFetch {
+    private static SlideShowClient client;
     private static String basePosterPath="http://image.tmdb.org/t/p/w342/";
     private static HashMap<String, String> movieList =  new HashMap<>();
     private static HashMap<String, String> tvList =  new HashMap<>();
@@ -49,7 +49,7 @@ public class anotherTemp {
 
 
     public void fetchMovie(){
-        client = new TempClass();
+        client = new SlideShowClient();
 
         client.getPoster("movie/top_rated",new JsonHttpResponseHandler(){
 
@@ -83,7 +83,7 @@ public class anotherTemp {
 
 
     public void fetchTv(){
-        client = new TempClass();
+        client = new SlideShowClient();
 
         client.getPoster("tv/top_rated",new JsonHttpResponseHandler(){
 
