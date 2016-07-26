@@ -21,9 +21,12 @@ public class BoxOfficeMovie implements Serializable {
 
     private String posterPath;
 
-    private double popularity;
-    private int voteCount;
     private double voteAverage;
+    private double popularity;
+
+    private int voteCount;
+    private int Movie_id;
+
 
 
     public String getTitle(){
@@ -56,15 +59,14 @@ public class BoxOfficeMovie implements Serializable {
         return posterPath;
     }
 
-    public ArrayList<String> Setposter(){
-        ArrayList<String> poster = new ArrayList<String>();
-        poster.add(getPosterPath().toString()+"http://image.tmdb.org/t/p/w185/");
-        return poster;
-    }
 
 
     public String getOverview(){
         return overview;
+    }
+
+    public int getMovie_id(){
+        return Movie_id;
     }
 
     public static BoxOfficeMovie fromJson(JSONObject jsonObject){
@@ -80,6 +82,7 @@ public class BoxOfficeMovie implements Serializable {
             b.voteAverage=jsonObject.getDouble("vote_average");
             b.voteCount=jsonObject.getInt("vote_count");
             b.overview=jsonObject.getString("overview");
+            b.Movie_id=jsonObject.getInt("id");
         }catch(JSONException e){
             e.printStackTrace();
             return null;

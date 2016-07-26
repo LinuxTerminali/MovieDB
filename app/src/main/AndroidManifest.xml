@@ -28,7 +28,7 @@
 
 
         <activity
-            android:name=".GridViewActivity"
+            android:name=".MovieGenreFragments.GenreMovieFragment"
             android:label="@string/title_activity_slide_show_main"
             android:parentActivityName=".MainMovieDB">
             <intent-filter>

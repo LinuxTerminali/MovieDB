@@ -1,4 +1,4 @@
-package com.terminali.moviedb;
+package com.terminali.moviedb.temp;
 
 import android.text.TextUtils;
 

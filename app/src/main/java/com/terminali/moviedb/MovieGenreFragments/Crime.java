@@ -1,77 +1,74 @@
-package com.terminali.moviedb;
+package com.terminali.moviedb.MovieGenreFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.terminali.moviedb.BoxOfficeActivity;
+import com.terminali.moviedb.BoxOfficeMovie;
+import com.terminali.moviedb.GridAdapter;
+import com.terminali.moviedb.MovieDBClient;
+import com.terminali.moviedb.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
 import cz.msebera.android.httpclient.Header;
 
-public class GridViewActivity extends MainMovieDB {
+public class Crime extends Fragment {
     private final String LOG_TAG = MovieDBClient.class.getSimpleName();
+
     MovieDBClient client;
     private GridAdapter adapterPoster;
     public static final String Movie_Detail = "movie";
-    private final static String TAG = "Test second";
+
+    public Crime() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(savedInstanceState == null){
-            Log.i(TAG, "onCreate() savedInstanceState == null");
-            // normal fragment stuff here e.g. getSupportFragmentManager commit, add, replace etc
-        } else {
-            Log.i(TAG,"onCreate() savedInstanceState != null");
-            // fragment stuff here e.g. find fragment by tag, id whatever
-        }
-        setContentView(R.layout.grid_view_activity);
-        GridView grid_view = (GridView) findViewById(R.id.grid_view);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-        setupActionBar();
-        /*adapter*/
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+
+        View view = inflater.inflate(R.layout.top_movies_fragment, container, false);
+        GridView grid_view = (GridView) view.findViewById(R.id.grid_view);
         ArrayList<BoxOfficeMovie> poster = new ArrayList<BoxOfficeMovie>();
-        adapterPoster = new GridAdapter(this, poster);
+        adapterPoster = new GridAdapter(getActivity(),poster);
         grid_view.setAdapter(adapterPoster);
         fetchBoxofficeMovies();
-        grid_view.setOnItemClickListener(new OnItemClickListener() {
+        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Intent i = new Intent(GridViewActivity.this, BoxOfficeActivity.class);
+                Intent i = new Intent(getActivity(), BoxOfficeActivity.class);
                 i.putExtra(Movie_Detail, adapterPoster.getItem(position));
                 startActivity(i);
             }
         });
+        return view;
     }
 
-    private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            // Show the Up button in the action bar.
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
 
     private void fetchBoxofficeMovies() {
 
         client = new MovieDBClient();
         for (int i = 10; i >= 1; i--) {
 
-            client.getBOXofficeMovies("movie/upcoming",i, new JsonHttpResponseHandler() {
+            client.getBOXofficeMovies("genre/80/movies",i, new JsonHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
@@ -95,5 +92,6 @@ public class GridViewActivity extends MainMovieDB {
             });
         }
     }
+
 
 }

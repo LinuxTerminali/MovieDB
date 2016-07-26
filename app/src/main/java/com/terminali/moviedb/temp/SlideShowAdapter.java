@@ -1,4 +1,4 @@
-package com.terminali.moviedb;
+package com.terminali.moviedb.temp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.terminali.moviedb.BoxOfficeMovie;
+import com.terminali.moviedb.R;
 
 import java.util.ArrayList;
 

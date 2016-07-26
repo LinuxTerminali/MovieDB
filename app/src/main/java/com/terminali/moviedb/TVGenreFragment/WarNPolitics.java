@@ -1,18 +1,18 @@
-package com.terminali.moviedb;
+package com.terminali.moviedb.TVGenreFragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.terminali.moviedb.DiscoverClient;
+import com.terminali.moviedb.R;
+import com.terminali.moviedb.Tvshow;
+import com.terminali.moviedb.TvshowAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,20 +23,12 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ThreeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ThreeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ThreeFragment extends Fragment {
-    MovieDBClient client;
-    private GridAdapter adapterPoster;
+public class WarNPolitics extends Fragment {
+    DiscoverClient client;
+    private TvshowAdapter adapterPoster;
     public static final String Movie_Detail = "movie";
 
-    public ThreeFragment() {
+    public WarNPolitics() {
         // Required empty public constructor
     }
 
@@ -49,20 +41,13 @@ public class ThreeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_one, container, false);
+        View view = inflater.inflate(R.layout.top_movies_fragment, container, false);
         GridView grid_view = (GridView) view.findViewById(R.id.grid_view);
-        ArrayList<BoxOfficeMovie> poster = new ArrayList<BoxOfficeMovie>();
-        adapterPoster = new GridAdapter(getActivity(),poster);
+        ArrayList<Tvshow> poster = new ArrayList<Tvshow>();
+        adapterPoster = new TvshowAdapter(getActivity(),poster);
         grid_view.setAdapter(adapterPoster);
         fetchBoxofficeMovies();
-        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Intent i = new Intent(getActivity(), BoxOfficeActivity.class);
-                i.putExtra(Movie_Detail, adapterPoster.getItem(position));
-                startActivity(i);
-            }
-        });
+
         return view;
     }
 
@@ -79,10 +64,10 @@ public class ThreeFragment extends Fragment {
 
     private void fetchBoxofficeMovies() {
 
-        client = new MovieDBClient();
+        client = new DiscoverClient();
         for (int i = 10; i >= 1; i--) {
 
-            client.getBOXofficeMovies("movie/top_rated",i, new JsonHttpResponseHandler() {
+            client.getDiscover("discover/tv",10768,"popularity.desc",i, new JsonHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
@@ -92,10 +77,10 @@ public class ThreeFragment extends Fragment {
                         // Get the movies json array
                         items = responseBody.getJSONArray("results");
                         // Parse json array into array of model objects
-                        ArrayList<BoxOfficeMovie> results = BoxOfficeMovie.fromJson(items);
+                        ArrayList<Tvshow> results = Tvshow.fromJson(items);
                         // Load model objects into the adapter
-                        for (BoxOfficeMovie movie : results) {
-                            adapterPoster.add(movie); // add movie through the adapter
+                        for (Tvshow topshows : results) {
+                            adapterPoster.add(topshows); // add movie through the adapter
                         }
                         adapterPoster.notifyDataSetChanged();
                     } catch (JSONException e) {

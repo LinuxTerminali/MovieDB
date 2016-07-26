@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".GridViewActivity"
-    >
+    tools:context="com.terminali.moviedb.MovieGenreFragments.GenreMovieFragment">
+
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
+
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent" android:layout_height="match_parent"
@@ -32,7 +33,7 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:paddingTop="50dp"
-        tools:context=".GridViewActivity">
+        tools:context=".MovieGenreFragments.GenreMovieFragment">
 
     </GridView>
 

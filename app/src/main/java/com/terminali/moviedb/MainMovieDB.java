@@ -3,12 +3,9 @@ package com.terminali.moviedb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,21 +14,22 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.terminali.moviedb.MovieGenreFragments.GenreMovieFragment;
+import com.terminali.moviedb.TVGenreFragment.TvGenreFragment;
 
 
 public class MainMovieDB extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = "TestActivity";
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    FragmentManager mfragmentManager;
+    FragmentTransaction mfragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_slide_show_main);
+        super.onCreate(savedInstanceState);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -43,12 +41,9 @@ public class MainMovieDB extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        mfragmentManager= getSupportFragmentManager();
+        mfragmentTransaction= mfragmentManager.beginTransaction();
+        mfragmentTransaction.replace(R.id.containerView,new TopHomeFragment()).commit();
 
 
         Log.d(TAG, "On create .....");
@@ -96,73 +91,44 @@ public class MainMovieDB extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_camera) {
-            startActivity(new Intent(this, GridViewActivity.class));
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new Movies()).commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Genre) {
+            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new GenreMovieFragment()).commit();
 
-        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.home) {
+            Intent i = new Intent(this, MainMovieDB.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            finish();
 
         } else if (id == R.id.nav_share) {
+            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new TvShowFragment()).commit();
 
         } else if (id == R.id.nav_send) {
+            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new TvGenreFragment()).commit();
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
 
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-       adapter.addFragment(new OneFragment(),"Latest Release");
-        adapter.addFragment(new ThreeFragment(),"Top Rated Movie");
-        viewPager.setAdapter(adapter);
-    }
-
-
-
-
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            mFragmentTitleList.add("Latest Release");
-            mFragmentTitleList.add("Top Rated");
-            return mFragmentTitleList.get(position);
-        }
-    }
 
 }

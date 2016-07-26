@@ -1,8 +1,8 @@
 package com.terminali.moviedb;
 
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,31 +20,33 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
+/**
+ * Created by TERMINALi on 7/24/2016.
+ */
 
-
-public class OneFragment extends Fragment {
-
+public class LatestReleaseFragment extends Fragment {
     private final String LOG_TAG = MovieDBClient.class.getSimpleName();
 
     MovieDBClient client;
     private GridAdapter adapterPoster;
     public static final String Movie_Detail = "movie";
 
-    public OneFragment() {
-        // Required empty public constructor
+
+    public LatestReleaseFragment(){
+
     }
 
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstance){
+        super.onCreate(savedInstance);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-        View view = inflater.inflate(R.layout.fragment_one, container, false);
+        View view = inflater.inflate(R.layout.top_movies_fragment, container, false);
         GridView grid_view = (GridView) view.findViewById(R.id.grid_view);
         ArrayList<BoxOfficeMovie> poster = new ArrayList<BoxOfficeMovie>();
         adapterPoster = new GridAdapter(getActivity(),poster);
@@ -67,7 +69,7 @@ public class OneFragment extends Fragment {
         client = new MovieDBClient();
         for (int i = 10; i >= 1; i--) {
 
-            client.getBOXofficeMovies("movie/upcoming",i, new JsonHttpResponseHandler() {
+            client.getBOXofficeMovies("movie/now_playing",i, new JsonHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {
