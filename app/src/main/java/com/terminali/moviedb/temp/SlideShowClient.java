@@ -28,10 +28,11 @@ public class SlideShowClient {
     }
 
 
-    public static  void getPoster(String url,JsonHttpResponseHandler handler) {
+    public static  void getPoster(String url,String response,JsonHttpResponseHandler handler) {
        // String url = getAPIurl("movie/top_rated");
         RequestParams params = new RequestParams();
         params.put("api_key", API_key);
+        params.put("append_to_response",response);
         client.get(API_base_URL+url, params, handler);
 
     }

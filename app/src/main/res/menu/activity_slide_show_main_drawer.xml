@@ -14,22 +14,22 @@
         <item
             android:id="@+id/Genre"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="By Genre" />
+            android:title="Movies by Genre" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="TV Shows" />
+
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Shows by Genre" />
+
 
 
     </group>
 
-    <item android:title="TV Shows">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Shows" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="By Genre" />
-        </menu>
-    </item>
+
 
 </menu>

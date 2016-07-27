@@ -10,8 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="false"
-        app:expanded="false">
-
+        app:expanded="true">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/MyMaterialTheme" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -20,7 +24,8 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -31,10 +36,12 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:elevation="3dp"
-        card_view:cardCornerRadius="0dp">
+        card_view:cardCornerRadius="0dp"
+        card_view:cardBackgroundColor="?android:attr/colorForegroundInverse"
+        card_view:contentPaddingTop="500dp">
 
 
     <RelativeLayout
@@ -43,10 +50,13 @@
         <ImageView
             android:id="@+id/poster_image"
             android:layout_width="match_parent"
-            android:layout_height="325dp"
+            android:layout_height="500dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="fitXY"
-            android:src="@drawable/small_movie_poster" />
+            android:src="@drawable/small_movie_poster"
+            android:fitsSystemWindows="true"
+            android:layout_alignRight="@+id/over_card"
+            android:layout_alignEnd="@+id/over_card" />
 
         <TextView
             android:id="@+id/Movie_Title"
@@ -95,12 +105,6 @@
             android:layout_below="@id/vote_count"
             android:textSize="16sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Movie_id"
-            android:layout_below="@id/vote_average"
-            android:textSize="16sp"/>
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -108,7 +112,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/Movie_id"
+            android:layout_below="@+id/vote_average"
             android:layout_margin="5dp"
             android:elevation="3dp"
             card_view:cardCornerRadius="0dp">
@@ -126,6 +130,47 @@
                 android:textSize="16dp"
                 android:text="This is a story about a protagonist defeating an antagonist" />
         </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/thumb_card"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/over_card"
+            android:layout_margin="5dp"
+            android:elevation="3dp"
+            card_view:cardCornerRadius="0dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trailer and other Related Videos:"
+                android:layout_below="@+id/thumb_card"
+                android:id="@+id/video_text"
+                android:textSize="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+            <TextView
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Movie_id"
+            android:layout_below="@id/video_text"
+            android:textSize="16sp"
+            android:hint="name"
+            android:fontFamily="serif-monospace" />
+
+       <ImageView
+           android:layout_marginTop="100dp"
+           android:layout_width="match_parent"
+           android:layout_height="200dp"
+           android:layout_below="@id/Movie_id"
+           android:src="@drawable/small_movie_poster"
+           android:id="@+id/thumbnail" />
+
 
 
         </android.support.v7.widget.CardView>

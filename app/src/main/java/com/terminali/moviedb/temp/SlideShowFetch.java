@@ -1,16 +1,6 @@
 package com.terminali.moviedb.temp;
 
-import android.util.Log;
-
-import com.loopj.android.http.JsonHttpResponseHandler;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
-
-import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by TERMINALi on 7/23/2016.
@@ -48,7 +38,7 @@ public class SlideShowFetch {
     }
 
 
-    public void fetchMovie(){
+  /*  public void fetchMovie(){
         client = new SlideShowClient();
 
         client.getPoster("movie/top_rated",new JsonHttpResponseHandler(){
@@ -111,7 +101,7 @@ public class SlideShowFetch {
 
         });
 
-    }
+    }*/
 
 
 

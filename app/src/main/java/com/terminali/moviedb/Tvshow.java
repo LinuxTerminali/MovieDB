@@ -4,13 +4,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by TERMINALi on 7/24/2016.
  */
 
-public class Tvshow {
+public class Tvshow implements Serializable {
     private  String name;
     private String language;
     private String air_date;
@@ -20,6 +21,7 @@ public class Tvshow {
 
 
     private int voteCount;
+    private int show_id;
 
     private double vote_average;
     private double popularity;
@@ -62,6 +64,10 @@ public class Tvshow {
         return vote_average;
     }
 
+    public  int getShow_id(){
+       return  show_id;
+    }
+
 
     public static Tvshow fromJson(JSONObject jsonObject){
         Tvshow t =new Tvshow();
@@ -76,6 +82,7 @@ public class Tvshow {
             t.popularity=jsonObject.getDouble("popularity");
             t.vote_average=jsonObject.getDouble("vote_average");
             t.voteCount=jsonObject.getInt("vote_count");
+            t.show_id=jsonObject.getInt("id");
             t.overView=jsonObject.getString("overview");
         }catch(JSONException e){
             e.printStackTrace();

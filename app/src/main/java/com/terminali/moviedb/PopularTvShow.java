@@ -1,11 +1,13 @@
 package com.terminali.moviedb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -22,7 +24,7 @@ import cz.msebera.android.httpclient.Header;
 public class PopularTvShow extends Fragment {
     MovieDBClient client;
     private TvshowAdapter adapterPoster;
-    public static final String Movie_Detail = "movie";
+    public static final String Show_Detail = "show";
 
     public PopularTvShow() {
         // Required empty public constructor
@@ -43,6 +45,14 @@ public class PopularTvShow extends Fragment {
         adapterPoster = new TvshowAdapter(getActivity(),poster);
         grid_view.setAdapter(adapterPoster);
         fetchBoxofficeMovies();
+        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Intent i = new Intent(getActivity(),TVShowDetail.class);
+                i.putExtra(Show_Detail,adapterPoster.getItem(position));
+                startActivity(i);
+            }
+        });
 
         return view;
     }

@@ -1,16 +1,19 @@
 package com.terminali.moviedb.TVGenreFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.terminali.moviedb.DiscoverClient;
 import com.terminali.moviedb.R;
+import com.terminali.moviedb.TVShowDetail;
 import com.terminali.moviedb.Tvshow;
 import com.terminali.moviedb.TvshowAdapter;
 
@@ -26,7 +29,7 @@ import cz.msebera.android.httpclient.Header;
 public class News extends Fragment {
     DiscoverClient client;
     private TvshowAdapter adapterPoster;
-    public static final String Movie_Detail = "movie";
+    public static final String Show_Detail = "show";
 
     public News() {
         // Required empty public constructor
@@ -47,6 +50,14 @@ public class News extends Fragment {
         adapterPoster = new TvshowAdapter(getActivity(),poster);
         grid_view.setAdapter(adapterPoster);
         fetchBoxofficeMovies();
+        grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Intent i = new Intent(getActivity(),TVShowDetail.class);
+                i.putExtra(Show_Detail,adapterPoster.getItem(position));
+                startActivity(i);
+            }
+        });
 
         return view;
     }

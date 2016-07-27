@@ -1,6 +1,5 @@
 package com.terminali.moviedb;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -87,6 +86,11 @@ public class MainMovieDB extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id==R.id.search){
+            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new Movies()).commit();
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -108,10 +112,8 @@ public class MainMovieDB extends AppCompatActivity
 
 
         } else if (id == R.id.home) {
-            Intent i = new Intent(this, MainMovieDB.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(i);
-            finish();
+            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.containerView,new TopHomeFragment()).commit();
 
         } else if (id == R.id.nav_share) {
             FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
