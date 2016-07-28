@@ -64,14 +64,6 @@ public class ActionNAdventure extends Fragment {
 
 
 
-
-
-
-
-
-
-
-
     private void fetchBoxofficeMovies() {
 
         client = new DiscoverClient();

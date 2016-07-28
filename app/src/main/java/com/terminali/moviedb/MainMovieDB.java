@@ -1,13 +1,16 @@
 package com.terminali.moviedb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +26,7 @@ public class MainMovieDB extends AppCompatActivity
 
     FragmentManager mfragmentManager;
     FragmentTransaction mfragmentTransaction;
+    public static final String querydetail = "show";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +90,31 @@ public class MainMovieDB extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id==R.id.search){
-            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.containerView,new Movies()).commit();
+        if(id==R.id.search) {
+            final MenuItem searchItem = item;
+            final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                    intent.putExtra(querydetail,query);
+                    startActivity(intent);
+                    return true;
+                }
 
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    return false;
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
 
 

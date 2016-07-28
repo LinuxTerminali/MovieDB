@@ -92,7 +92,7 @@ public class BoxOfficeMovie implements Serializable {
 
     public static ArrayList<BoxOfficeMovie> fromJson(JSONArray jsonArray){
             ArrayList<BoxOfficeMovie> results = new ArrayList<BoxOfficeMovie>(jsonArray.length());
-            for(int i=0; i<=jsonArray.length();i++){
+            for(int i=0; i<jsonArray.length();i++){
                 JSONObject resultsJson =null;
                 try{
                     resultsJson=jsonArray.getJSONObject(i);
