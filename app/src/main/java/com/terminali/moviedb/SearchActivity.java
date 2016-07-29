@@ -84,7 +84,7 @@ public class SearchActivity extends AppCompatActivity {
                             for (int i = 0; i < items.length(); i++) {
                                 responseBody = items.getJSONObject(i);
                                 //Log.d("implements", responseBody.getString("poster_path"));
-                                Log.d("implement", "Movie" + responseBody.getString("title"));
+                                Log.d("implement", "movie" + responseBody.getString("title"));
                                 //Log.d("implement",responseBody.getString("name"));
                             }
                             for (int i = 0; i < items.length(); i++) {

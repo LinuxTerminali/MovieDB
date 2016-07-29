@@ -68,12 +68,12 @@
             android:id="@+id/Movie_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:text="The Dark Knight"
-            android:textSize="24sp"
             android:layout_below="@+id/poster_image"
-            android:textColor="@color/navigationBarColor"
-            android:fontFamily="serif-monospace" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:fontFamily="serif-monospace"
+            android:textStyle="normal|bold"
+            android:textColor="@android:color/background_dark" />
 
         <TextView
             android:id="@+id/Movie_language"
@@ -81,14 +81,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/Movie_Title"
             android:hint="en"
-            android:textSize="16sp" />
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:fontFamily="serif" />
         <TextView
             android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Christian Bale, Joseph-Gordon Levitt, Heath Ledger, Maggie Gylenhall"
-            android:textSize="16sp"
-            android:layout_below="@+id/Movie_language" />
+            android:layout_below="@+id/Movie_language"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:fontFamily="serif" />
 
 
         <TextView
@@ -96,20 +98,23 @@
             android:layout_height="wrap_content"
             android:id="@+id/Movie_popularity"
             android:layout_below="@+id/releaseDate"
-            android:textSize="12sp"/>
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:fontFamily="serif" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/vote_count"
             android:layout_below="@id/Movie_popularity"
-            android:textSize="12sp"/>
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:fontFamily="serif" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/vote_average"
             android:layout_below="@id/vote_count"
-            android:textSize="16sp"/>
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:fontFamily="serif" />
 
 
         <android.support.v7.widget.CardView
@@ -133,8 +138,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textSize="16dp"
-                android:text="This is a story about a protagonist defeating an antagonist" />
+                android:text="This is a story about a protagonist defeating an antagonist"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:fontFamily="serif"
+                android:textSize="16sp"
+                android:textAlignment="viewStart" />
         </LinearLayout>
 
 
@@ -158,7 +166,9 @@
                 android:layout_below="@+id/thumb_card"
                 android:id="@+id/video_text"
                 android:textSize="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:fontFamily="serif"
+                android:textStyle="normal|bold" />
 
             <TextView
             android:layout_marginTop="40dp"
@@ -166,9 +176,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/Movie_id"
             android:layout_below="@id/video_text"
-            android:textSize="16sp"
-            android:hint="name"
-            android:fontFamily="serif-monospace" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:fontFamily="serif" />
 
        <ImageView
            android:layout_marginTop="70dp"

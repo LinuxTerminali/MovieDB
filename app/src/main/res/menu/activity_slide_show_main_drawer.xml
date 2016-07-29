@@ -4,26 +4,22 @@
     <group android:checkableBehavior="single"
         android:title="@string/movies_category">
         <item
-            android:id="@+id/Home"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Home" />
-        <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/movie"
             android:title="Movies" />
         <item
             android:id="@+id/Genre"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/movies_gerner"
             android:title="Movies by Genre" />
 
         <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/tv"
             android:title="TV Shows" />
 
         <item
             android:id="@+id/nav_send"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/tv_gener"
             android:title="Shows by Genre" />
 
 

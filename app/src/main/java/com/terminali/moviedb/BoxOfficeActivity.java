@@ -111,7 +111,7 @@ public class BoxOfficeActivity extends AppCompatActivity {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Movie Name: "+movie.getTitle()+" OverView: "+movie.getOverview()+" find more at android APP "+Movie_SHARE_HASHTAG);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, Html.fromHtml("<b>movie:</b>  ")+movie.getTitle()+Html.fromHtml("<br>")+Html.fromHtml(" <b>OverView:</b> ")+movie.getOverview()+Html.fromHtml("<br>")+Html.fromHtml("  <b>Find More info like this on</b>  ")+Movie_SHARE_HASHTAG);
 
         return shareIntent;
     }

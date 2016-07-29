@@ -40,6 +40,7 @@ public class TVShowDetail extends AppCompatActivity {
     private TextView overView;
     private TextView voteCount;
     private TextView id;
+    private TextView origin;
 
     String url= "tv/";
     String youtube="youtube";
@@ -58,6 +59,7 @@ public class TVShowDetail extends AppCompatActivity {
 
         Movie_Title=(TextView)findViewById(R.id.Movie_Title);
         Movie_language=(TextView)findViewById(R.id.Movie_language);
+        origin=(TextView)findViewById(R.id.Origin_Country);
         releaseDate=(TextView)findViewById(R.id.releaseDate);
         Movie_popularity=(TextView)findViewById(R.id.Movie_popularity);
         vote_average=(TextView)findViewById(R.id.vote_average);
@@ -108,7 +110,7 @@ public class TVShowDetail extends AppCompatActivity {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "TV Show: "+show.getName()+" OverView: "+show.getOverView()+" find more at android APP "+Movie_SHARE_HASHTAG);
+        shareIntent.putExtra(Intent.EXTRA_TEXT,Html.fromHtml("<b>TV Show:</b>  ")+show.getName()+Html.fromHtml("<br>")+Html.fromHtml(" <b>OverView:</b> ")+show.getOverView()+Html.fromHtml("<br>")+Html.fromHtml("  <b>Find More info like this on</b>  ")+Movie_SHARE_HASHTAG);
 
         return shareIntent;
     }
@@ -146,7 +148,8 @@ public class TVShowDetail extends AppCompatActivity {
         String posterURL= basePosterPath+show.getPoster_path();
         Movie_Title.setText(show.getName());
         Movie_language.setText(Html.fromHtml("<b>Language:</b> "+show.getLanguage()));
-        releaseDate.setText(Html.fromHtml("<b>Release Date:</b> "+show.getAir_date()));
+        //origin.setText(Html.fromHtml("<b>Origin Country</b>"+show.getOrigin_Country()));
+        releaseDate.setText(Html.fromHtml("<b>First Air Date:</b> "+show.getAir_date()));
         Movie_popularity.setText(Html.fromHtml("<b>Popularity:</b> "+show.getPopularity()));
         vote_average.setText(Html.fromHtml("<b>Average Votes:</b> "+show.getVote_average()));
         voteCount.setText(Html.fromHtml("<b>Vote count:</b>"+show.getVoteCount()));

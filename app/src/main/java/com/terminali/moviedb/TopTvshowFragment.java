@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ProgressBar;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -42,10 +43,13 @@ public class TopTvshowFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.top_movies_fragment, container, false);
         GridView grid_view = (GridView) view.findViewById(R.id.grid_view);
+
+
         ArrayList<Tvshow> poster = new ArrayList<Tvshow>();
         adapterPoster = new TvshowAdapter(getActivity(),poster);
         grid_view.setAdapter(adapterPoster);
         fetchBoxofficeMovies();
+
         grid_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
@@ -75,6 +79,7 @@ public class TopTvshowFragment extends Fragment {
         for (int i = 10; i >= 1; i--) {
 
             client.getBOXofficeMovies("tv/top_rated",i, new JsonHttpResponseHandler() {
+
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject responseBody) {

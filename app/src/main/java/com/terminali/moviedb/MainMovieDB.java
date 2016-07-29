@@ -131,11 +131,6 @@ public class MainMovieDB extends AppCompatActivity
             FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView,new GenreMovieFragment()).commit();
 
-
-        } else if (id == R.id.home) {
-            FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.containerView,new TopHomeFragment()).commit();
-
         } else if (id == R.id.nav_share) {
             FragmentTransaction fragmentTransaction= mfragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.containerView,new TvShowFragment()).commit();

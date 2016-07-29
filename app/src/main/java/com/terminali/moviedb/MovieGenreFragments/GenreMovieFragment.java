@@ -63,7 +63,7 @@ public class GenreMovieFragment extends Fragment {
         adapter.addFragment(new Romance(),"Romance");
         adapter.addFragment(new ScienceFiction(),"Science Fiction");
         adapter.addFragment(new Thriller(),"Thriller");
-        adapter.addFragment(new TVMovie(),"TV Movie");
+        adapter.addFragment(new TVMovie(),"TV movie");
         adapter.addFragment(new War(),"War");
         adapter.addFragment(new Western(),"Western");
 
