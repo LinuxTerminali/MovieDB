@@ -40,7 +40,10 @@ public class SearchAdapter extends ArrayAdapter<BoxOfficeMovie> {
         name_of.setText(results.getTitle());
         language.setText("Language: "+results.getLanguage());
         vote_average.setText("Average votes: "+results.getVoteAverage());
-        Picasso.with(getContext()).load(actualurl).into(poster);
+        Picasso.with(getContext())
+                .load(actualurl)
+                .error(R.drawable.large_movie_poster)
+                .into(poster);
 
 
         return convertView;

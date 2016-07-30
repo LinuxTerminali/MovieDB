@@ -28,7 +28,9 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -143,6 +145,7 @@
                 android:fontFamily="serif"
                 android:textSize="16sp"
                 android:textAlignment="viewStart" />
+
         </LinearLayout>
 
 
@@ -158,6 +161,7 @@
             android:layout_margin="5dp"
             android:elevation="3dp"
             card_view:cardCornerRadius="0dp">
+
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
@@ -178,23 +182,35 @@
             android:layout_below="@id/video_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:fontFamily="serif" />
+            <com.google.android.gms.ads.AdView
+                android:layout_marginTop="80dp"
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:adSize="BANNER"
+                android:layout_below="@+id/Movie_id"
+                app:adUnitId="@string/banner_ad_unit_id">
+            </com.google.android.gms.ads.AdView>
 
-       <ImageView
-           android:layout_marginTop="70dp"
-           android:layout_width="450dp"
-           android:layout_height="450dp"
-           android:layout_below="@id/Movie_id"
-           android:src="@drawable/small_movie_poster"
-           android:id="@+id/thumbnail" />
+            <ImageView
+                android:layout_marginTop="130dp"
+                android:layout_width="450dp"
+                android:layout_height="450dp"
+                android:layout_below="@id/Movie_id"
+                android:src="@drawable/small_movie_poster"
+                android:id="@+id/thumbnail" />
 
 
 
         </android.support.v7.widget.CardView>
 
+
     </RelativeLayout>
 
+
 </android.support.v7.widget.CardView>
+
         </RelativeLayout>
     </ScrollView>
-</LinearLayout>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

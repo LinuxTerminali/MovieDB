@@ -25,6 +25,11 @@
         app:headerLayout="@layout/nav_header_slide_show_main"
         app:menu="@menu/activity_slide_show_main_drawer" />
 
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin" />
 
 </android.support.v4.widget.DrawerLayout>

@@ -2,13 +2,18 @@ package com.terminali.moviedb;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -33,9 +38,10 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setupActionBar();
         ListView listView=(ListView)findViewById(R.id.list_view);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent intent = getIntent();
         value= intent.getStringExtra(querydetail);
@@ -48,6 +54,10 @@ public class SearchActivity extends AppCompatActivity {
         listView.setAdapter(searchAdapter);
         fetchSearchData(value);
         setTitle(value);
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
@@ -58,6 +68,13 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
         public void fetchSearchData(String value){
             client = new SearchClient();
@@ -71,27 +88,25 @@ public class SearchActivity extends AppCompatActivity {
                         JSONArray items = null;
 
                         try {
+
                             // Get the movies json array
                             items = responseBody.getJSONArray("results");
                             // Parse json array into array of model objects
-                            ArrayList<BoxOfficeMovie> results = BoxOfficeMovie.fromJson(items);
-                            // Load model objects into the adapter
-                            for (BoxOfficeMovie movie : results) {
-                                searchAdapter.add(movie);
-                                // add movie through the adapter
+
+                            if(items.length()==0){
+                                Toast.makeText(getApplicationContext(), "No results found", Toast.LENGTH_SHORT).show();
                             }
-                            searchAdapter.notifyDataSetChanged();
-                            for (int i = 0; i < items.length(); i++) {
-                                responseBody = items.getJSONObject(i);
-                                //Log.d("implements", responseBody.getString("poster_path"));
-                                Log.d("implement", "movie" + responseBody.getString("title"));
-                                //Log.d("implement",responseBody.getString("name"));
-                            }
-                            for (int i = 0; i < items.length(); i++) {
-                                responseBody = items.getJSONObject(i);
-                                //Log.d("implements", responseBody.getString("poster_path"));
-                                //Log.d("implement",responseBody.getString("title"));
-                                Log.d("implement", "tvshow " + responseBody.getString("name"));
+                            else{
+                                Toast.makeText(getApplicationContext(), "Loading...", Toast.LENGTH_SHORT).show();
+                                ArrayList<BoxOfficeMovie> results = BoxOfficeMovie.fromJson(items);
+                                // Load model objects into the adapter
+                                for (BoxOfficeMovie movie : results) {
+                                    searchAdapter.add(movie);
+                                    // add movie through the adapter
+                                }
+                                Log.d("items",items.length()+"of");
+
+                                searchAdapter.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             Log.v("LOG_TAG", "search", e);

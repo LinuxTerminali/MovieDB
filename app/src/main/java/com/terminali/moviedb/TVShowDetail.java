@@ -16,6 +16,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.squareup.picasso.Picasso;
 
@@ -29,7 +32,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class TVShowDetail extends AppCompatActivity {
     private final String LOG_TAG = MovieDBClient.class.getSimpleName();
-    private static final String Movie_SHARE_HASHTAG = " #EDB";
+    private static final String Movie_SHARE_HASHTAG = " #logo_edb";
     MovieDBClient client;
     private String  basePosterPath ="http://image.tmdb.org/t/p/w500/";
     private TextView Movie_Title;
@@ -74,6 +77,10 @@ public class TVShowDetail extends AppCompatActivity {
                 getIntent().getSerializableExtra(TopTvshowFragment.Show_Detail);
         url=url+show.getShow_id()+"/videos";
         setTitle(show.getName());
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         try{
             fetchTrailer();
